@@ -8,23 +8,26 @@ import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
+  // localStorage.clear(); // to clear the localstorage
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
   const authData = useContext(AuthContext);
 
   useEffect(() => {
-    setLocalStorage();
-    const { employees, admin } = getLocalStorage();
-    if (localStorage.getItem("loggedInUser")) {
-      const { role } = JSON.parse(localStorage.getItem("loggedInUser"));
-      setUser(role);
+    console.log("useEffect is running");
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
+      setLoggedInUserData(userData.data);
     }
   }, []);
 
   const handleLogin = (email, password) => {
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
-      // console.log("Admin logged in");
+      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
+
       console.log(user);
     } else if (authData) {
       const employee = authData.employees.find(
@@ -35,7 +38,7 @@ const App = () => {
         setLoggedInUserData(employee);
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "employee" })
+          JSON.stringify({ role: "employee", data: employee })
         );
       }
     } else {

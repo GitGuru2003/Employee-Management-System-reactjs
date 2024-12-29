@@ -10,38 +10,17 @@ const TaskList = ({ data }) => {
       id="tasklist"
       className="h-[55%] overflow-x-auto w-full py-5 mt-10 flex items-center justify-start gap-5 flex-nowrap"
     >
-      {data.tasks.map((element) => {
+      {data.tasks.map((element, index) => {
         if (element.active) {
-          return <AcceptTask />;
+          return <AcceptTask key={index} data={element} />;
         } else if (element.newTask) {
-          return <NewTask />;
+          return <NewTask key={index} data={element} />;
         } else if (element.completed) {
-          return <CompleteTask />;
+          return <CompleteTask key={index} data={element} />;
         } else if (element.failed) {
-          return <FailedTask />;
+          return <FailedTask key={index} data={element} />;
         }
       })}
-      {/* <AcceptTask />
-      <NewTask />
-      <CompleteTask />
-      <FailedTask /> */}
-
-      <div className="flex flex-col shrink-0 h-full w-[300px] p-5 bg-pink-400 rounded-xl">
-        <div className="flex justify-between items-center">
-          {/* Priority on the left */}
-          <h3 className="bg-red-600 text-sm px-3 py-1 rounded">High</h3>
-          {/* Date on the right */}
-          <h4 className="text-sm">20 Feb 2024</h4>
-        </div>
-        {/* Task description centered under priority and date */}
-        <h2 className="mt-5 text-2xl font-semibold text-center">
-          Make a YouTube Video
-        </h2>
-        <p className="text-sm mt-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          sed omnis soluta quo blanditiis deserunt.
-        </p>
-      </div>
     </div>
   );
 };
