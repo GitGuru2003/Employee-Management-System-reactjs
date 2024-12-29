@@ -1,8 +1,17 @@
+localStorage.clear(); // to clear the localstorage
+
 const employees = [
   {
     id: 1,
+    firstName: "Ali",
     email: "employee1@example.com",
     password: "123",
+    taskCounts: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
@@ -38,12 +47,19 @@ const employees = [
   },
   {
     id: 2,
+    firstName: "Ayesha",
     email: "employee2@example.com",
     password: "123",
+    taskCounts: {
+      active: 1,
+      newTask: 0,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
-        newTask: true,
+        newTask: false,
         completed: false,
         failed: false,
         taskTitle: "Client call",
@@ -65,8 +81,15 @@ const employees = [
   },
   {
     id: 3,
+    firstName: "Zain",
     email: "employee3@example.com",
     password: "123",
+    taskCounts: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
@@ -79,16 +102,6 @@ const employees = [
         category: "Organization",
       },
       {
-        active: false,
-        newTask: false,
-        completed: false,
-        failed: true,
-        taskTitle: "Submit expense report",
-        taskDescription: "Submit the expense report for approval.",
-        taskDate: "2024-12-18",
-        category: "Finance",
-      },
-      {
         active: true,
         newTask: false,
         completed: false,
@@ -98,12 +111,29 @@ const employees = [
         taskDate: "2024-12-21",
         category: "Meeting",
       },
+      {
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+        taskTitle: "Submit expense report",
+        taskDescription: "Submit the expense report for approval.",
+        taskDate: "2024-12-18",
+        category: "Finance",
+      },
     ],
   },
   {
     id: 4,
+    firstName: "Fatima",
     email: "employee4@example.com",
     password: "123",
+    taskCounts: {
+      active: 2,
+      newTask: 1,
+      completed: 0,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
@@ -129,8 +159,15 @@ const employees = [
   },
   {
     id: 5,
+    firstName: "Ahmed",
     email: "employee5@example.com",
     password: "123",
+    taskCounts: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
@@ -154,7 +191,7 @@ const employees = [
       },
       {
         active: true,
-        newTask: true,
+        newTask: false,
         completed: false,
         failed: false,
         taskTitle: "Draft emails",
