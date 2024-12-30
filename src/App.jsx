@@ -1,21 +1,17 @@
-import { React, useContext, useEffect, useState } from "react";
-// import "./App.css";
+import React, { useContext, useEffect, useState } from "react";
 import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
-import "./index.css";
-import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
-  // localStorage.clear(); // to clear the localstorage
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
-  const [userData, setUserData] = useContext(AuthContext);
+  const [userData, SetUserData] = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("useEffect is running");
     const loggedInUser = localStorage.getItem("loggedInUser");
+
     if (loggedInUser) {
       const userData = JSON.parse(loggedInUser);
       setUser(userData.role);
@@ -27,11 +23,9 @@ const App = () => {
     if (email == "admin@me.com" && password == "123") {
       setUser("admin");
       localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
-
-      console.log(user);
     } else if (userData) {
       const employee = userData.find(
-        (emp) => emp.email == email && emp.password == password
+        (e) => email == e.email && e.password == password
       );
       if (employee) {
         setUser("employee");
@@ -42,7 +36,7 @@ const App = () => {
         );
       }
     } else {
-      alert("Invalid credentials");
+      alert("Invalid Credentials");
     }
   };
 
@@ -50,9 +44,9 @@ const App = () => {
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
       {user == "admin" ? (
-        <AdminDashboard />
+        <AdminDashboard changeUser={setUser} />
       ) : user == "employee" ? (
-        <EmployeeDashboard data={loggedInUserData} />
+        <EmployeeDashboard changeUser={setUser} data={loggedInUserData} />
       ) : null}
     </>
   );

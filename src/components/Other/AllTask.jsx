@@ -13,7 +13,7 @@ const AllTask = () => {
         <h5 className="text-lg font-medium w-1/5">Completed</h5>
         <h5 className="text-lg font-medium w-1/5">Failed</h5>
       </div>
-      <div className="max-h-[200px] overflow-y-auto">
+      <div className="">
         {userData.map(function (elem, idx) {
           return (
             <div
