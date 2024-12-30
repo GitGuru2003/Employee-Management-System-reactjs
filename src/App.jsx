@@ -11,7 +11,7 @@ const App = () => {
   // localStorage.clear(); // to clear the localstorage
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
-  const authData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   useEffect(() => {
     console.log("useEffect is running");
@@ -29,8 +29,8 @@ const App = () => {
       localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
 
       console.log(user);
-    } else if (authData) {
-      const employee = authData.employees.find(
+    } else if (userData) {
+      const employee = userData.find(
         (emp) => emp.email == email && emp.password == password
       );
       if (employee) {
